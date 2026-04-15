@@ -15,9 +15,7 @@ export default function Order() {
   let price, selectedPizza;
   if (!loading) {
     selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
-    price = intl.format(
-      selectedPizza.sizes ? selectedPizza.sizes[pizzaSize] : "",
-    );
+    price = intl.format(selectedPizza.sizes[pizzaSize]);
   }
 
   useEffect(() => {
@@ -92,14 +90,18 @@ export default function Order() {
           </div>
           <button type="submit">Add to Cart</button>
         </div>
-        <div className="order-pizza">
-          <Pizza
-            name={selectedPizza.name}
-            description={selectedPizza.description}
-            image={selectedPizza.image}
-          />
-          <p>{price}</p>
-        </div>
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <div className="order-pizza">
+            <Pizza
+              name={selectedPizza.name}
+              description={selectedPizza.description}
+              image={selectedPizza.image}
+            />
+            <p>{price}</p>
+          </div>
+        )}
       </form>
     </div>
   );
