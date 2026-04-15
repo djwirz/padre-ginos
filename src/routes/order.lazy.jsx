@@ -1,11 +1,16 @@
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useContext } from "react";
-import Pizza from "./Pizza";
-import Cart from "./Cart";
-import { CartContext } from "./contexts";
+import Pizza from "../Pizza";
+import Cart from "../Cart";
+import { CartContext } from "../contexts";
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
+});
+
+export const Route = createLazyFileRoute("/order")({
+  component: Order,
 });
 
 export default function Order() {
